@@ -1,5 +1,3 @@
 # item-based-collaborative-filtering
-Implement an efficient  item-based collaborative filtering algorithm for top-n recommendations. 
-Program should take 4 console inputs: &lt;train.txt> &lt;test.txt> &lt;N> &lt;output.txt>.
-
-See: http://kevinkolcheck.com/portfolio/item-based-collaborative-filtering-recommender-system/
+For an indepth explanation of how the recommender system works (with pictures), please see: asdf 
+http://kevinkolcheck.com/portfolio/item-based-collaborative-filtering-recommender-system/
