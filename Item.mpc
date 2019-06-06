@@ -1,0 +1,23 @@
+// Assignment 2: Item-based Collaborative Filtering
+project (Item) {
+    exename = Item
+
+    Source_Files {
+        Csr.cpp
+        Recommendation.cpp
+        Qsort.cpp
+        main.cpp
+    }  
+    Header_Files {
+        Csr.h
+        Recommendation.h
+        Qsort.h
+    }
+    Inline_Files {
+        Csr.inl
+        Qsort.inl
+    }
+    specific (make) {
+        compile_flags += -std=c++11
+    }
+}
