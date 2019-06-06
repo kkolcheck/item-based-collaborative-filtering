@@ -33,8 +33,8 @@ double Csr::getElement (int i, int j) const{
     for (int p = getRow_ptr(i); p < getRow_ptr(i+1); p ++){
         if (getCol_ind(p)-1 == j){
 			return (getVal(p));
-		} //end if
-    } //end for
+		}
+    }
     return (0);
 }
 
@@ -55,7 +55,7 @@ void Csr::transposeCsr (){
             int nnzIndex = getCol_ind(j);
             row_ptr2[nnzIndex] ++;
         }
-	}
+    }
 
     /* construct the final row_ptr2 here */
     /* nnz values in each column (calculated in first run) become the nnz values in each row */
@@ -65,9 +65,9 @@ void Csr::transposeCsr (){
             prev = 0;
         } else {
             prev = row_ptr2[i-1];
-        } //end if
+        }
         row_ptr2[i] = row_ptr2[i] + prev;
-    } //end for
+    }
 
     /* second run: fill out the new matrix */
     for (int i = 0; i < getRows(); i ++){
@@ -79,8 +79,8 @@ void Csr::transposeCsr (){
             col_ind2[transposedIndex] = i+1;	//convert to MatLab style
             val2[transposedIndex] = getVal(j);  
             row_counts[nnzIndex] ++;  //row_counts keeps track of how many nnz are in that row
-        } //end for
-    } //end for
+        }
+    }
 
     // Set new matrix
     setRows(nrows2);
@@ -123,26 +123,26 @@ double Csr::modifiedRowCosine (int i, int j, int X, int Y){
         else {
             lengthi += ( getVal(ci) - X) * ( getVal(ci) - X);
             ni ++;
-        } //end if
-    } //end while
+        }
+    }
 
 	while (ni < nrowi){
 		int ci = getRow_ptr(i) + ni;
 		lengthi += ( getVal(ci) - X) * ( getVal(ci) - X);
 		ni ++;
-	} //end while
+	}
 	
 	while (nj < nrowj){
 		int cj = getRow_ptr(j) + nj;
 		lengthj += ( getVal(cj) - Y) * ( getVal(cj) - Y);
 		nj ++;
-	} //end while
+	}
     
     if (lengthi * lengthj){
         cosine /= sqrt(lengthi * lengthj);
     } else {
         cosine = 0;
-    } //end if
+    }
     
     return (cosine);
 }

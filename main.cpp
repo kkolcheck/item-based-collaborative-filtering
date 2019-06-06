@@ -70,9 +70,9 @@ Csr * fileIn (char * input){
             ssline >> token;
             inMatrix->setVal(nnzIndex, token);
             nnzIndex ++;
-        } //end while
+        }
         inMatrix->setRow_ptr(i + 1, nnzIndex);     // Keep track of how many non zero entries in each row
-    } //end for
+    }
     inFile.close();
 
     return inMatrix;
@@ -95,8 +95,8 @@ void matrixOut (std::string file, Csr * outMatrix){
             if (j + 1 == outMatrix->getRow_ptr(i+1) && i + 1 != rows){
                 outFile << std::endl;
             } 
-        } //end for
-    } //end for
+        }
+    }
     outFile.close();
 }
 
@@ -132,8 +132,9 @@ void filteringOut (char * training, char * test, char * N, char * output) {
         double * r_u = rec.calVecMatrix(M, user, S);
         Qsort sorted(r_u, 0, mcols-1);   //quicksort takes n-1
         size_t counter = 0;
-            /* recommend all items */
+  
         if (filterNum >= mcols){
+            /* recommend all items */
             filterNum = mcols;  //adjust for accurate hitRank
             for (size_t i = 0; i < mcols; i++){
                 if(M->getElement(user,sorted.getIndex(i)) != 1){
@@ -152,8 +153,9 @@ void filteringOut (char * training, char * test, char * N, char * output) {
         elapsedTime += endTime - startTime;
         outFile << std::endl;
         startTime = clock();
+        
         } else {
-                /* recommend N number of items */
+            /* recommend N number of items */
             for (size_t i = 0; i < mrows; i ++){
                 if(counter < filterNum){
                     if(M->getElement(user,sorted.getIndex(i)) != 1){
@@ -165,10 +167,10 @@ void filteringOut (char * training, char * test, char * N, char * output) {
                         if (T->getElement(user,sorted.getIndex(i))!= 0) {
                             hitCounter++;
                             arHitRank += (1.0 / (counter));
-                        }       
+                        }   
                     }
                 }
-            } //end for
+            }//end for
             if (N != 0){
                 endTime = clock();
                 elapsedTime += endTime - startTime;
@@ -180,7 +182,6 @@ void filteringOut (char * training, char * test, char * N, char * output) {
     }
     /* After all users have recommendations, print HR and ARHR */
     printHitRates(hitCounter, mrows, arHitRank, filterNum);
-
     delete M;
     delete T;
     delete S;

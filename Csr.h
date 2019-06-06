@@ -10,7 +10,7 @@ public:
     Csr ();
     Csr (int rows, int columns, int nnz);
     ~Csr ();
-    /* Getters and Setters */
+
     void setRows (int rows);
     int getRows () const;
     void setColumns (int columns);
@@ -23,7 +23,7 @@ public:
     int getCol_ind (int i) const;
     void setVal (int i, double value);
     double getVal (int i) const;
-    /* Other methods */
+    
     void createArrays ();
     double getElement (int i, int j) const;
     void transposeCsr ();
